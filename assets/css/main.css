@@ -1,0 +1,710 @@
+:root {
+    --card-bg: rgb(255,255,255,0.25);
+    --special-clr: #2dca91;
+    --product-space: 8px;
+}
+::-webkit-scrollbar {
+    width: 0;
+}
+@font-face {
+    font-family: 'Quicksand';
+    font-style: normal;
+    font-weight: 300;
+    font-display: swap;
+    src: url('/storage/fonts/Quicksand/Quicksand-VariableFont_wght.ttf') format('woff2');
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Quicksand", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    user-select: none;
+}
+html {
+    opacity: 0;
+    animation: page-open 0.8s forwards;
+}
+body.error404 {
+    background-color: #1A1C1D;
+}
+body.error404 .errorBox {
+    position: relative;
+    z-index: 3;
+    color: white;
+    text-align: center;
+    padding: 30px;
+    border-radius: 30px;
+    background-color: var(--special-clr);
+    border: 2px solid var(--card-bg);
+    box-shadow: 0 0 10px 1px black;
+    opacity: 0;
+    animation: page-open 1s forwards;
+}
+body.error404 .errorBox h1 {
+    font-size: 6.5rem;
+    margin-bottom: 1rem;
+}
+body {
+    width: 100%;
+    min-height: 100svh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    overflow: hidden;
+    color: white;
+    position: relative;
+    background-color: var(--special-clr);
+}
+footer {
+    position: absolute;
+    bottom: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    opacity: 0.5;
+    pointer-events: none;
+    transition: 0.25s;
+}
+@media (max-height: 1050px) {
+    footer {
+        bottom: 25px;
+    }
+}
+@media (max-height: 850px) {
+    footer {
+        opacity: 0;
+    }
+}
+@media (min-width: 600px) {
+    body {
+        background: url("/storage/main-bg.webp");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+    }
+    body::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(to bottom, black, rgb(0,0,0,0.5), black);
+        pointer-events: none;
+    }
+}
+.container {
+    width: 700px;
+    height: 1000px;
+    z-index: 2;
+    transform-origin: top center;
+}
+.card {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 30px;
+    background-color: var(--special-clr);
+    border: 2px solid var(--card-bg);
+    box-shadow: 0 0 10px 1px black;
+    opacity: 0;
+    animation: page-open 1s forwards;
+    overflow: hidden;
+}
+@media (min-width: 600px) {
+    .card {
+        scale: 0.35;
+        animation: scaleDef 1s forwards;
+    }
+}
+.card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(0,0,0,0.3);
+    pointer-events: none;
+    z-index: 3;
+}
+@keyframes page-open {
+    100% {
+        opacity: 1;
+    }
+}
+@keyframes scaleDef {
+    100% {
+        opacity: 1;
+        scale: 1;
+    }
+}
+.card-details {
+    height: 100%;
+    position: relative;
+    z-index: 4;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.card-banner {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    min-height: 220px;
+    background-image: url("/storage/banner/desktop/banner.webp");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    animation: opacity-anim 1s forwards;
+    animation-delay: 0.25s;
+}
+@keyframes opacity-anim {
+    100% {
+        opacity: 1;
+    }
+}
+.card-banner::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgb(0,0,0,0.5) 70%, #238D65);
+}
+.card-banner img {
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+    translate: -50%;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    z-index: 5;
+    scale: 0;
+    opacity: 0;
+    animation: logo-anim 1.5s forwards;
+    animation-delay: 0.7s;
+}
+@keyframes logo-anim {
+    50% {
+        scale: 1;
+        opacity: 1;
+    }
+    100% {
+        scale: 1;
+        opacity: 1;
+        box-shadow: 0 0 20px 5px var(--special-clr);
+    }
+}
+.card-section {
+    height: 100%;
+}
+.card-section section {
+    height: 100%;
+    padding: 10px;
+}
+.card-section .main {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.card-title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 140px;
+}
+.card-title h1 {
+    text-align: center;
+    font-size: 2rem;
+}
+.card-title .founder b {
+    padding: 0 5px;
+    position: relative;
+    font-size: 1.1rem;
+}
+.card-title .founder b::before {
+    position: relative;
+    content: '❝';
+    top: 0;
+    left: -2px;
+}
+.card-title .founder b::after {
+    position: relative;
+    content: '❞';
+    top: 0;
+    right: -3px;
+}
+.card-title .social-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 0;
+}
+.btn {
+    position: relative;
+    padding: 8px 12px;
+    border: 0;
+    background-color: var(--special-clr);
+    box-shadow: 0 0 5px var(--special-clr);
+    color: white;
+    font-size: 1.1rem;
+    border-radius: 15px;
+    transition: 0.3s;
+}
+.card-title .social-buttons .btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 9px;
+}
+.btn>* {
+    position: relative;
+    z-index: 5;
+}
+.btn::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(0,0,0,0.5);
+    border-radius: 15px;
+    opacity: 0;
+    transition: 0.35s;
+    z-index: 3;
+}
+.btn:hover:after {
+    opacity: 1;
+}
+.btn:hover {
+    box-shadow: 0 0 0 transparent;
+}
+.btn:not(.product.active):active {
+    scale: 0.97;
+}
+.card-products {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+}
+.product-list {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow-y: auto;
+    background-color: rgb(0,0,0,0.1);
+    padding: 10px;
+    border-radius: 18px;
+}
+.product-list.lock {
+    overflow: hidden;
+}
+.product-group {
+    height: 0;
+    padding: 0;
+    transition: 0.35s;
+    margin-bottom: 0;
+}
+.product {
+    width: 100%;
+    height: 104px;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    padding: 8px;
+    box-shadow: 0 0 5px 2px var(--special-clr);
+    margin: 0;
+    margin-bottom: var(--product-space);
+    overflow: hidden;
+    transition: 0.35s;
+}
+.product:last-child,
+.product.last {
+    margin-bottom: 0;
+}
+.product .productBackBtn {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 30px;
+    height: 30px;
+    font-size: 1rem;
+    border-radius: 12px;
+    pointer-events: all;
+    cursor: pointer;
+    background-color: #2eb883;
+    color: white;
+    border: 1px solid white;
+    opacity: 0;
+    scale: 0.5;
+    transition: 0.35s opacity, 0.35s scale;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.product .productBackBtn::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+    border: 1px solid transparent;
+    background-color: rgb(0,0,0,0.3);
+    opacity: 0;
+    transition: 0.35s;
+}
+.product .productBackBtn:hover:after {
+    opacity: 1;
+}
+.product.active .productBackBtn:active {
+    scale: 0.92;
+}
+.product.active .productBackBtn {
+    opacity: 1;
+    scale: 1;
+}
+.product.active .detail {
+    padding-top: 0;
+}
+.product.active .detail .title {
+    padding-left: 35px;
+}
+.product.active {
+    border-radius: 0;
+    height: calc(100% + 20px);
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 0 0 transparent;
+}
+.product.active::after {
+    border-radius: 0;
+    opacity: 1;
+}
+.product.activev .detail {
+    order: 1;
+}
+.product .product-img {
+    aspect-ratio: 1/1;
+    height: 100%;
+    pointer-events: none;
+    position: relative;
+}
+.product.active .product-img {
+    max-width: 100%;
+    height: calc(100% - 70px);
+    order: 2;
+}
+.product .product-img img {
+    width: 100%;
+    max-height: 100%;
+    border-radius: 15px;
+    transition: 0.35s;
+    pointer-events: none;
+}
+.product .product-img img.loading {
+    filter: blur(5px);
+}
+.product .product-book {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    transform: translateY(25px);
+    opacity: 0;
+    transition: 0.35s;
+}
+.product .product-book .separate {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+.product .product-book .book-account {
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    padding: 8px 12px;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.product .product-book .book-account h3 {
+    font-size: 1.5rem;
+    color: #635BFF;
+    margin-bottom: -1rem;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: fit-content;
+}
+.product .product-book .book-account h3 svg {
+    position: absolute;
+    top: 50%;
+    left: -32px;
+    transform: translateY(-50%);
+}
+.product .product-book .book-account .bookBox {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.product .product-book .book-account .bookBox a {
+    text-decoration: none;
+    font-size: 1.5rem;
+    padding: 8px 12px;
+    border-radius: 20px;
+    color: white;
+    background-color: #635BFF;
+}
+.product .product-book .book-account .bookBox a:hover {
+    background-color: #756eff;
+}
+.product .product-book .book-account .bookBox a::after {
+    opacity: 0 !important;
+}
+.product.active.book .product-book {
+    transform: translateY(0);
+    opacity: 1;
+}
+.product.active.book .product-img {
+    pointer-events: all;
+}
+.product.active.book .product-img img {
+    transform: translateY(25px);
+    opacity: 0;
+}
+.product .detail {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 3px;
+    pointer-events: none;
+}
+.product .detail .title {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+    gap: 5px;
+    text-align: start;
+    padding: 0 7px;
+}
+.product .detail .title h2 {
+    font-size: 1.5rem;
+}
+.product .detail .title p span {
+    background-color: rgb(0,0,0,0.5);
+    padding: 3px 10px;
+    border-radius: 20px;
+    white-space: nowrap;
+}
+.product .detail .total {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    font-size: 1.25rem;
+    padding: 5px;
+    border-radius: 10px;
+    background-color: rgb(0,0,0,0.5);
+    transition: 0.35s;
+}
+.product .detail .total .price {
+    overflow: hidden;
+    width: 100%;
+    padding: 0 3px;
+    transition: 0.35s;
+}
+.product .detail .total .currency {
+    overflow: hidden;
+    min-width: 26px;
+    width: 26px;
+    height: 26px;
+    background-color: rgb(255,255,255,0.3);
+    border-radius: 7px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.35s;
+}
+.product .detail .total .goBook {
+    width: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    pointer-events: none;
+    transition: 0.35s;
+    opacity: 0;
+    background-color: rgb(255,255,255,0.3);
+}
+.product.active .detail .total .goBook {
+    width: 100%;
+    padding-left: 5px;
+    padding-right: 34px;
+    margin-right: 6px;
+    border-radius: 6px;
+    opacity: 1;
+}
+.product.active .detail .total.activeBtn .goBook {
+    pointer-events: all;
+    cursor: pointer;
+    scale: 1.15;
+}
+.product.active .detail .total .goBook:hover {
+    background-color: rgb(255,255,255,0.2);
+}
+.product.active .detail .total .goBook:active {
+    scale: 1.1;
+}
+.product.active .detail .total .price {
+    width: 0;
+    padding: 0;
+    opacity: 0;
+    transition-delay: 0s;
+}
+.product.active .detail .total .currency {
+    min-width: 0;
+    width: 0;
+    height: 0;
+    opacity: 0;
+    transition-delay: 0s;
+}
+.product#groupBtn.active-group {
+    border-radius: 15px 15px 0 0;
+    box-shadow: 0 0 0 transparent;
+    margin-bottom: 0;
+}
+.product#groupBtn.active-group::after {
+    border-radius: 15px 15px 0 0;
+    opacity: 1;
+}
+.product#groupBtn.active-group:active {
+    scale: 1;
+}
+.product#groupBtn .group-arrow {
+    transition: 0.3s rotate, 0.3s scale;
+}
+.product#groupBtn.active-group .group-arrow {
+    rotate: 90deg;
+    scale: 1.1;
+}
+.product-group.active-group {
+    padding: 10px;
+    margin-bottom: var(--product-space);
+    border-radius: 0 0 15px 15px;
+}
+.product-group.active-product {
+    height: 103% !important;
+}
+@media (max-width: 750px) {
+    body {
+        padding-top: 0;
+    }
+    .container {
+        width: 100%;
+        height: 100svh;
+    }
+    .card {
+        border-radius: 0;
+    }
+    .product .detail .total {
+        font-size: 1rem;
+        transform: translateX(5px) scale(0.95);
+    }
+    .card-title h1 {
+        font-size: 1.8rem;
+    }
+    .card-section .main {
+        justify-content: start;
+    }
+    footer {
+        opacity: 0;
+    }
+}
+@media (max-width: 600px) {
+    .product .detail .title h2 {
+        font-size: 1.1rem;
+    }
+    .product .detail .title p {
+        font-size: 0.9rem;
+    }
+}
+@media (max-width: 430px) {
+    .card-banner {
+        background-image: url("/storage/banner/mobile/banner.webp");
+    }
+}
+@media (max-width: 400px) {
+    .card-details {
+        gap: 5px;
+    }
+    .card-title h1 {
+        font-size: 1.6rem;
+    }
+    .card-banner {
+        min-height: 160px;
+    }
+    .card-banner img {
+        width: 100px;
+        height: 100px;
+        bottom: -10px;
+    }
+    .product .detail .title h2 {
+        font-size: 1rem;
+    }
+    .product .detail .title p {
+        font-size: 0.8rem;
+    }
+    .product {
+        height: 81px;
+    }
+    .product .detail .total {
+        padding: 3px;
+    }
+    .product .detail .total .price {
+        font-size: 0.9rem;
+    }
+    .product .detail .total .currency {
+        width: 22px;
+        min-width: 22px;
+        height: 22px;
+    }
+    .card-title h1 {
+        font-size: 1.5rem !important;
+    }
+}
+@media (max-height: 1050px) {
+    @keyframes scaleDef {
+        100% {
+            opacity: 1;
+            scale: 0.9;
+        }
+    }
+    .container {
+        height: 100%;
+    }
+    .card-title {
+        margin-bottom: 20px;
+    }
+}
